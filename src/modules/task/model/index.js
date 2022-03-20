@@ -23,5 +23,5 @@ module.exports.deleteManyTask = (filter) => {
 }
 
 module.exports.insertOneTask = (data) => {
-  return collection('tasks').insertOne({ id: uuid(), ...data })
+  return collection('tasks').insertOne({ id: uuid(), createdAt: new Date(Date.now()), done: false, ...data })
 }
