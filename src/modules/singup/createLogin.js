@@ -18,7 +18,7 @@ function validateParams(login, password, userName) {
 
 module.exports = async (login, password, userName) => {
   validateParams(login, password, userName);
-  const userExists = await findOneUser({ login });
+  const userExists = await findOneUser(login);
   if (userExists) {
     throw new AppError('User already exists');
   }
