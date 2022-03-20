@@ -1,7 +1,7 @@
-const AppError = require("../../infra/AppError");
-const findProject = require("../projects/findProject");
-const { findOneTask, updateOneTask } = require("./model");
-const taskIsDone = require("./taskIsDone");
+const AppError = require('../../infra/AppError');
+const findProject = require('../projects/findProject');
+const { findOneTask, updateOneTask } = require('./model');
+const taskIsDone = require('./taskIsDone');
 
 function validateParams(taskName) {
   if (!taskName) {
@@ -9,7 +9,9 @@ function validateParams(taskName) {
   }
 }
 
-module.exports = async ({ id, taskName, projectId, userId }) => {
+module.exports = async ({
+  id, taskName, projectId, userId,
+}) => {
   if (await taskIsDone(id)) {
     throw new AppError('Task is already done.');
   }
@@ -21,4 +23,4 @@ module.exports = async ({ id, taskName, projectId, userId }) => {
   }
   await updateOneTask({ id }, { taskName });
   return findOneTask({ id });
-}
+};

@@ -1,5 +1,3 @@
-const { insertOneUser } = require("./model");
+const { insertOneUser } = require('./model');
 
-module.exports = (data) => {
-  return insertOneUser(data);
-}
+module.exports = (data) => insertOneUser(data);

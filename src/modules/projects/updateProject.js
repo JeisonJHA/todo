@@ -1,5 +1,5 @@
-const AppError = require("../../infra/AppError");
-const { findOneProject, updateOneProject } = require("./model")
+const AppError = require('../../infra/AppError');
+const { findOneProject, updateOneProject } = require('./model');
 
 function validateParams(projectName) {
   if (!projectName) {
@@ -8,11 +8,11 @@ function validateParams(projectName) {
 }
 
 module.exports = async ({ id, projectName, userId }) => {
-  validateParams(projectName)
+  validateParams(projectName);
   const project = await findOneProject({ id, userId });
   if (!project) {
     throw Error('Project doesn`t exists.');
   }
   await updateOneProject({ id }, { projectName });
   return findOneProject({ id });
-}
+};

@@ -1,6 +1,6 @@
-const { verify } = require("jsonwebtoken");
+const { verify } = require('jsonwebtoken');
 const { findOneUser } = require('../modules/user/model');
-const AppError = require("../infra/AppError");
+const AppError = require('../infra/AppError');
 
 module.exports = async (request, _response, next) => {
   const authHeader = request.headers.authorization;
@@ -19,4 +19,4 @@ module.exports = async (request, _response, next) => {
   } catch (error) {
     throw new AppError('Not authenticated.', 401);
   }
-}
+};

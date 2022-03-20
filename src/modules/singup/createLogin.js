@@ -1,6 +1,6 @@
 const { hashSync } = require('bcryptjs');
 
-const AppError = require("../../infra/AppError");
+const AppError = require('../../infra/AppError');
 const findOneUser = require('../user/findUser');
 const insertOneUser = require('../user/createUser');
 
@@ -23,4 +23,4 @@ module.exports = async (login, password, userName) => {
     throw new AppError('User already exists');
   }
   await insertOneUser({ login, password: hashSync(password, 8), userName });
-}
+};

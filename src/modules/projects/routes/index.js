@@ -2,6 +2,7 @@ const { Router } = require('express');
 const controller = require('../controller');
 
 const taskRoutes = require('../../task/routes');
+
 const router = Router();
 
 router.get('/', controller.list);

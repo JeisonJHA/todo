@@ -1,6 +1,6 @@
-const AppError = require("../../infra/AppError");
-const { findOneProject, deleteOneProject } = require("./model")
-const deleteTaskFromProject = require("../task/deleteTaskFromProject");
+const AppError = require('../../infra/AppError');
+const { findOneProject, deleteOneProject } = require('./model');
+const deleteTaskFromProject = require('../task/deleteTaskFromProject');
 
 module.exports = async ({ id, userId }) => {
   const project = await findOneProject({ id, userId });
@@ -9,4 +9,4 @@ module.exports = async ({ id, userId }) => {
   }
   await deleteTaskFromProject({ projectId: id, userId });
   await deleteOneProject({ id, userId });
-}
+};

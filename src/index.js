@@ -3,7 +3,7 @@ require('dotenv/config');
 const express = require('express');
 const cors = require('cors');
 
-require('express-async-errors')
+require('express-async-errors');
 
 const routes = require('./routes');
 const { connect } = require('./infra/database');
@@ -18,5 +18,5 @@ app.use(error);
 
 app.listen(3333, async () => {
   await connect();
-  console.log(`Listening to the port: ${3333} 🚀`)
+  console.log(`Listening to the port: ${3333} 🚀`);
 });

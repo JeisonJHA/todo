@@ -1,5 +1,3 @@
-const { findOneUser } = require("./model");
+const { findOneUser } = require('./model');
 
-module.exports = (login) => {
-  return findOneUser({ login });
-}
+module.exports = (login) => findOneUser({ login });

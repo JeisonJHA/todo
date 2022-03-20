@@ -1,6 +1,6 @@
-const AppError = require("../infra/AppError");
+const AppError = require('../infra/AppError');
 
-module.exports = (err, _request, response, _) => {
+module.exports = (err, _request, response) => {
   if (err instanceof AppError) {
     return response
       .status(err.statusCode)
@@ -11,4 +11,4 @@ module.exports = (err, _request, response, _) => {
   return response
     .status(500)
     .json({ status: 'error', message: 'Internal server error.' });
-}
+};

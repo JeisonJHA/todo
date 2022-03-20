@@ -7,4 +7,4 @@ module.exports = async ({ id, userId }) => {
     throw new AppError('Project doesn`t exists.');
   }
   return project;
-}
+};

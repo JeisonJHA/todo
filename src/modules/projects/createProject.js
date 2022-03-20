@@ -1,5 +1,5 @@
-const AppError = require("../../infra/AppError");
-const { findOneProject, insertOneProject } = require("./model")
+const AppError = require('../../infra/AppError');
+const { findOneProject, insertOneProject } = require('./model');
 
 function validateParam(projectName) {
   if (!projectName) {
@@ -15,4 +15,4 @@ module.exports = async ({ projectName, userId }) => {
   }
   await insertOneProject({ projectName, userId });
   return findOneProject({ projectName, userId });
-}
+};
