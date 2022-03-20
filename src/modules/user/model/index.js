@@ -7,5 +7,5 @@ module.exports.findOneUser = (filter) => {
 }
 
 module.exports.insertOneUser = (data) => {
-  return collection('user').insertOne({ id: uuid(), ...data })
+  return collection('user').insertOne({ id: uuid(), createdAt: new Date(Date.now()), ...data })
 }

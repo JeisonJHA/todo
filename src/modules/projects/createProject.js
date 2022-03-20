@@ -7,12 +7,12 @@ function validateParam(projectName) {
   }
 }
 
-module.exports = async (projectName) => {
+module.exports = async ({ projectName, userId }) => {
   validateParam(projectName);
-  const projectExists = await findOneProject({ projectName });
+  const projectExists = await findOneProject({ projectName, userId });
   if (projectExists) {
     throw new AppError('There`s already a project with this name.');
   }
-  await insertOneProject({ projectName });
-  return findOneProject({ projectName });
+  await insertOneProject({ projectName, userId });
+  return findOneProject({ projectName, userId });
 }

@@ -1,7 +1,8 @@
 const { hashSync } = require('bcryptjs');
 
 const AppError = require("../../infra/AppError");
-const { findOneUser, insertOneUser } = require('../user/model');
+const findOneUser = require('../user/findUser');
+const insertOneUser = require('../user/createUser');
 
 function validateParams(login, password, userName) {
   if (!login) {

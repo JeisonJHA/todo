@@ -19,5 +19,5 @@ module.exports.deleteOneProject = (filter) => {
 }
 
 module.exports.insertOneProject = (data) => {
-  return collection('projects').insertOne({ id: uuid(), ...data })
+  return collection('projects').insertOne({ id: uuid(), createdAt: new Date(Date.now()), ...data })
 }

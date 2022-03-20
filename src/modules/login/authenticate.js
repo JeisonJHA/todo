@@ -2,7 +2,7 @@ const { compareSync } = require('bcryptjs');
 const { sign } = require('jsonwebtoken');
 
 const AppError = require("../../infra/AppError");
-const { findOneUser } = require('../user/model');
+const findOneUser = require('../user/findUser');
 
 function validateParams(login, password) {
   if (!login) {

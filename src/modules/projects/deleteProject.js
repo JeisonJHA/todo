@@ -1,16 +1,12 @@
 const AppError = require("../../infra/AppError");
 const { findOneProject, deleteOneProject } = require("./model")
-const { deleteManyTask } = require("../task/model")
+const deleteTaskFromProject = require("../task/deleteTaskFromProject");
 
-module.exports = async (id) => {
-  const project = await findOneProject({ id });
+module.exports = async ({ id, userId }) => {
+  const project = await findOneProject({ id, userId });
   if (!project) {
     throw new AppError('Project doesn`t exists.');
   }
-  await Promise.all(
-    [
-      deleteOneProject({ id }),
-      deleteManyTask({ projectId: id })
-    ]
-  );
+  await deleteTaskFromProject({ projectId: id, userId });
+  await deleteOneProject({ id, userId });
 }
