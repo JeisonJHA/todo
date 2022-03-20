@@ -2,12 +2,44 @@ const { v4: uuid } = require('uuid');
 
 const { collection } = require("../../../infra/database");
 
-module.exports.findOneProject = (filter) => {
-  return collection('projects').findOne(filter, { projection: { _id: 0 } });
+module.exports.findOneProject = async (filter) => {
+  return (await collection('projects').aggregate([
+    { $match: filter },
+    {
+      $lookup: {
+        from: 'tasks',
+        localField: 'id',
+        foreignField: 'projectId',
+        as: 'tasks'
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        'tasks._id': 0
+      }
+    }
+  ]).toArray())[0];
 }
 
 module.exports.findProjects = (filter = {}) => {
-  return collection('projects').find(filter, { projection: { _id: 0 } }).toArray();
+  return collection('projects').aggregate([
+    { $match: filter },
+    {
+      $lookup: {
+        from: 'tasks',
+        localField: 'id',
+        foreignField: 'projectId',
+        as: 'tasks'
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        'tasks._id': 0
+      }
+    }
+  ]).toArray();
 }
 
 module.exports.updateOneProject = (filter, data) => {
