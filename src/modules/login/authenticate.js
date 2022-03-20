@@ -15,7 +15,7 @@ function validateParams(login, password) {
 
 module.exports = async (login, password) => {
   validateParams(login, password);
-  const userExists = await findOneUser({ login });
+  const userExists = await findOneUser(login);
   if (!userExists || !compareSync(password, userExists.password)) {
     throw new AppError('Invalid login data.', 401);
   }

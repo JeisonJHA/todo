@@ -9,12 +9,12 @@ function validateParams(taskName) {
   }
 }
 
-module.exports = async ({ id, taskName, projectId }) => {
-  if (taskIsDone(id)) {
+module.exports = async ({ id, taskName, projectId, userId }) => {
+  if (await taskIsDone(id)) {
     throw new AppError('Task is already done.');
   }
   validateParams(taskName);
-  const project = await findProject({ id: projectId });
+  const project = await findProject({ id: projectId, userId });
   const taskExists = await findOneTask({ taskName, projectId: project.id });
   if (taskExists) {
     throw new AppError('There`s already a task with this name.');
